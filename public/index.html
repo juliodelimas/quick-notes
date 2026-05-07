@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <!-- AUTH SCREEN -->
+  <div id="auth-screen" class="screen">
+    <div class="auth-card">
+      <div class="logo">
+        <span class="logo-icon">&#9998;</span>
+        <h1>Quick Notes</h1>
+      </div>
+
+      <div class="tab-bar">
+        <button class="tab active" data-tab="login">Log In</button>
+        <button class="tab" data-tab="register">Register</button>
+      </div>
+
+      <form id="login-form" class="auth-form">
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="login-password">Password</label>
+          <input id="login-password" type="password" placeholder="••••••••" autocomplete="current-password" required />
+        </div>
+        <p class="form-error" id="login-error"></p>
+        <button type="submit" class="btn-primary btn-full">Log In</button>
+      </form>
+
+      <form id="register-form" class="auth-form hidden">
+        <div class="field">
+          <label for="reg-name">Name</label>
+          <input id="reg-name" type="text" placeholder="Your name" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="reg-email">Email</label>
+          <input id="reg-email" type="email" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="reg-password">Password <span class="hint">(min 8 chars)</span></label>
+          <input id="reg-password" type="password" placeholder="••••••••" autocomplete="new-password" required minlength="8" />
+        </div>
+        <p class="form-error" id="register-error"></p>
+        <button type="submit" class="btn-primary btn-full">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- APP SCREEN -->
+  <div id="app-screen" class="screen hidden">
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="logo-icon">&#9998;</span>
+        <span class="app-title">Quick Notes</span>
+      </div>
+      <div class="topbar-right">
+        <span id="user-name" class="user-label"></span>
+        <button id="random-btn" class="btn-ghost" title="Random note">&#9684; Random</button>
+        <button id="logout-btn" class="btn-ghost" title="Log out">&#x2715; Log out</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <button id="new-note-btn" class="btn-primary btn-full">+ New Note</button>
+        <div class="tag-filter">
+          <p class="section-label">Filter by tag</p>
+          <div id="tag-list" class="tag-cloud"></div>
+          <button id="clear-filter-btn" class="btn-link hidden">Clear filter</button>
+        </div>
+      </aside>
+
+      <!-- NOTES LIST -->
+      <section class="notes-panel">
+        <div id="notes-list" class="notes-list"></div>
+        <p id="empty-msg" class="empty-msg hidden">No notes yet. Create your first one!</p>
+      </section>
+
+      <!-- EDITOR PANEL -->
+      <section id="editor-panel" class="editor-panel hidden">
+        <div class="editor-header">
+          <h2 id="editor-title">New Note</h2>
+          <button id="close-editor-btn" class="btn-icon" title="Close">&times;</button>
+        </div>
+        <textarea id="note-content" class="note-textarea" placeholder="Write your note here..." maxlength="5000"></textarea>
+        <div class="editor-footer">
+          <div class="field tag-input-row">
+            <label for="note-tags">Tags <span class="hint">(comma separated)</span></label>
+            <input id="note-tags" type="text" placeholder="e.g. work, idea, todo" />
+          </div>
+          <div class="editor-actions">
+            <button id="delete-note-btn" class="btn-danger hidden">Delete</button>
+            <button id="save-note-btn" class="btn-primary">Save</button>
+          </div>
+        </div>
+        <p class="form-error" id="editor-error"></p>
+      </section>
+    </main>
+  </div>
+
+  <!-- RANDOM NOTE MODAL -->
+  <div id="random-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>&#9684; Random Note</h3>
+        <button id="close-modal-btn" class="btn-icon">&times;</button>
+      </div>
+      <p id="random-note-text" class="random-note-text"></p>
+      <div id="random-note-tags" class="tag-cloud"></div>
+      <div class="modal-actions">
+        <button id="another-random-btn" class="btn-ghost">Another one</button>
+        <button id="edit-random-btn" class="btn-primary">Edit this note</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
